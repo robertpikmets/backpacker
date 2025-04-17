@@ -1,13 +1,13 @@
-import geopandas as gpd
 import json
+
+import dash_leaflet as dl
+import geopandas as gpd
+from dash import Dash, Input, Output, callback, html
 
 # layers = gpd.list_layers("backpacker/data/gadm41_VNM.gpkg")
 gdf = gpd.read_file("backpacker/data/gadm41_VNM.gpkg", layer="ADM_ADM_1")
 geojson_data = json.loads(gdf.to_json())
 
-from dash import Dash, html, callback, Output, Input
-import dash_leaflet as dl
-from dash.dependencies import Input, Output
 
 app = Dash()
 
@@ -38,7 +38,7 @@ geo_json = dl.GeoJSON(
 
 tile_layer = dl.TileLayer(
     url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
-    attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',  # noqa: E501
 )
 
 app.layout = html.Div(

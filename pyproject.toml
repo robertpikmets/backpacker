@@ -14,6 +14,13 @@ dependencies = [
     "geopandas (>=1.0.1,<2.0.0)"
 ]
 
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+# extend-select = ["I"]
+
+[tool.ruff]
+line-length = 100
+
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
